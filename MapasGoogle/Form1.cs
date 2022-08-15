@@ -19,6 +19,8 @@ namespace MapasGoogle
 {
     public partial class Form1 : Form
     {
+        string ConnectString = "datasource = localhost; port = 3306; username = root; password=; database = réseau";
+
 
         GMarkerGoogle marker;
         GMapOverlay markerOverlay;
@@ -43,8 +45,8 @@ namespace MapasGoogle
 
         private void DBConnection()
         {
-            string ConnectString = "datasource = localhost; port = 3306; username = root; password=; database = réseau";
-            MySqlConnection DBConnect = new MySqlConnection(ConnectString);
+            string mycnx = ConnectString;
+            MySqlConnection DBConnect = new MySqlConnection(mycnx);
             try
             {
                 DBConnect.Open();
@@ -52,13 +54,14 @@ namespace MapasGoogle
             }
             catch (Exception e)
             {
-              MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
             }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
 
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Description", typeof(string)));
@@ -67,7 +70,7 @@ namespace MapasGoogle
 
             //insertion des données dans la DT à afficher dans la liste
 
-            dt.Rows.Add("Emplacement", LatInicial, LngInicial);
+            dt.Rows.Add("Site_Name", LatInicial, LngInicial);
             dataGridView1.DataSource = dt;
 
             //désactiver les colonnes lat et long
@@ -91,7 +94,7 @@ namespace MapasGoogle
 
             //ajoute une info-bulle de texte aux marqueurs
             marker.ToolTipMode = MarkerTooltipMode.Always;
-            marker.ToolTipText = string.Format("Emplacement:\n Latitude:{0}\n Longueur:{1}", LatInicial, LngInicial);
+            marker.ToolTipText = string.Format("Site_Name:\n Latitude:{0}\n Longueur:{1}", LatInicial, LngInicial);
 
             gMapControl1.Overlays.Add(markerOverlay);
 
@@ -101,7 +104,6 @@ namespace MapasGoogle
         private void SelecionarRegistro(object sender, DataGridViewCellMouseEventArgs e)
         {
             filaSeleccionada = e.RowIndex;
-           
             txtDescripcion.Text = dataGridView1.Rows[filaSeleccionada].Cells[0].Value.ToString();
             txtlatitud.Text = dataGridView1.Rows[filaSeleccionada].Cells[1].Value.ToString();
             txtlongitud.Text = dataGridView1.Rows[filaSeleccionada].Cells[2].Value.ToString();
@@ -120,16 +122,16 @@ namespace MapasGoogle
             txtlongitud.Text = lng.ToString();
 
             marker.Position = new PointLatLng(lat, lng);
-            marker.ToolTipText = string.Format("Emplacement:\n Latitude:{0}\n Longueur:{1}", lat, lng);
+            marker.ToolTipText = string.Format("Site_Name:\n Latitude:{0}\n Longueur:{1}", lat, lng);
 
             CrearDireccionTrazarRuta(lat, lng);
-            
+
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
             dt.Rows.Add(txtDescripcion.Text, txtlatitud.Text, txtlongitud.Text);
-           
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -137,7 +139,7 @@ namespace MapasGoogle
             dataGridView1.Rows.RemoveAt(filaSeleccionada);
         }
 
-       
+
 
         private void btnPolygon_Click(object sender, EventArgs e)
         {
@@ -145,7 +147,7 @@ namespace MapasGoogle
             List<PointLatLng> puntos = new List<PointLatLng>();
 
             double lng, lat;
-            for(int filas=0;filas<dataGridView1.Rows.Count;filas++)
+            for (int filas = 0; filas < dataGridView1.Rows.Count; filas++)
             {
                 lat = Convert.ToDouble(dataGridView1.Rows[filas].Cells[1].Value);
                 lng = Convert.ToDouble(dataGridView1.Rows[filas].Cells[2].Value);
@@ -167,7 +169,7 @@ namespace MapasGoogle
 
             List<PointLatLng> puntos = new List<PointLatLng>();
             double lng, lat;
-            for (int filas = 0; filas < dataGridView1.Rows.Count; filas++) 
+            for (int filas = 0; filas < dataGridView1.Rows.Count; filas++)
             {
                 lat = Convert.ToDouble(dataGridView1.Rows[filas].Cells[1].Value);
                 lng = Convert.ToDouble(dataGridView1.Rows[filas].Cells[2].Value);
@@ -186,9 +188,9 @@ namespace MapasGoogle
 
         public void CrearDireccionTrazarRuta(double lat, double lng)
         {
-            if(trazarRuta)
+            if (trazarRuta)
             {
-                switch(ContadorIndicadoresRuta)
+                switch (ContadorIndicadoresRuta)
                 {
                     case 0:
                         ContadorIndicadoresRuta++;
@@ -212,7 +214,7 @@ namespace MapasGoogle
             }
         }
 
-        
+
 
         private void btnSat_Click(object sender, EventArgs e)
         {
@@ -263,15 +265,16 @@ namespace MapasGoogle
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string ConnectString = "datasource = localhost; port = 3306; username = root; password=; database = réseau";
-            MySqlConnection DBConnect = new MySqlConnection(ConnectString);
-            DBConnect.Open();
-            SqlCommand Sql = new SqlCommand("SELECT Longitude FROM deux_g");
+            string myConnection = ConnectString;
+            MySqlConnection Mycon = new MySqlConnection(myConnection);
+            Mycon.Open();
+            MySqlCommand Sql = new MySqlCommand("SELECT Site_Name,Latitude,Longitude FROM deux_g", Mycon);
             MySqlDataReader dr;
+            dr = Sql.ExecuteReader();
             dt = new DataTable();
             dt.Load(dr);
+            dt.Rows.Add("Site_Name");
             dataGridView1.DataSource = dt;
         }
     }
 }
-   
