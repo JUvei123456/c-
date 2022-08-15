@@ -11,6 +11,8 @@ using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 
 namespace MapasGoogle
@@ -36,10 +38,28 @@ namespace MapasGoogle
         public Form1()
         {
             InitializeComponent();
+
+        }
+
+        private void DBConnection()
+        {
+            string ConnectString = "datasource = localhost; port = 3306; username = root; password=; database = réseau";
+            MySqlConnection DBConnect = new MySqlConnection(ConnectString);
+            try
+            {
+                DBConnect.Open();
+                MessageBox.Show("Ok you are connected");
+            }
+            catch (Exception e)
+            {
+              MessageBox.Show(e.Message);
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+
             dt = new DataTable();
             dt.Columns.Add(new DataColumn("Description", typeof(string)));
             dt.Columns.Add(new DataColumn("Lat", typeof(double)));
@@ -230,5 +250,28 @@ namespace MapasGoogle
         {
 
         }
+
+        private void txtlatitud_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtlongitud_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ConnectString = "datasource = localhost; port = 3306; username = root; password=; database = réseau";
+            MySqlConnection DBConnect = new MySqlConnection(ConnectString);
+            DBConnect.Open();
+            SqlCommand Sql = new SqlCommand("SELECT Longitude FROM deux_g");
+            MySqlDataReader dr;
+            dt = new DataTable();
+            dt.Load(dr);
+            dataGridView1.DataSource = dt;
+        }
     }
 }
+   

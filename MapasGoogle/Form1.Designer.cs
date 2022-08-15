@@ -48,10 +48,13 @@
             this.trackZoom = new System.Windows.Forms.TrackBar();
             this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackZoom)).BeginInit();
             this.SuspendLayout();
-           
+            // 
+            // gMapControl1
+            // 
             this.gMapControl1.Bearing = 0F;
             this.gMapControl1.CanDragMap = true;
             this.gMapControl1.EmptyTileColor = System.Drawing.Color.Navy;
@@ -59,7 +62,7 @@
             this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMapControl1.LevelsKeepInMemmory = 5;
             this.gMapControl1.Location = new System.Drawing.Point(16, 16);
-            this.gMapControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gMapControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gMapControl1.MarkersEnabled = true;
             this.gMapControl1.MaxZoom = 2;
             this.gMapControl1.MinZoom = 2;
@@ -77,29 +80,31 @@
             this.gMapControl1.Zoom = 0D;
             this.gMapControl1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.gMapControl1_MouseDoubleClick);
             // 
-            // txtDescription
+            // txtDescripcion
             // 
             this.txtDescripcion.Location = new System.Drawing.Point(771, 44);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(280, 22);
             this.txtDescripcion.TabIndex = 3;
             // 
-            // txtlat
+            // txtlatitud
             // 
             this.txtlatitud.Location = new System.Drawing.Point(771, 97);
-            this.txtlatitud.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtlatitud.Margin = new System.Windows.Forms.Padding(4);
             this.txtlatitud.Name = "txtlatitud";
             this.txtlatitud.Size = new System.Drawing.Size(280, 22);
             this.txtlatitud.TabIndex = 4;
+            this.txtlatitud.TextChanged += new System.EventHandler(this.txtlatitud_TextChanged);
             // 
-            // txtlong
+            // txtlongitud
             // 
             this.txtlongitud.Location = new System.Drawing.Point(771, 153);
-            this.txtlongitud.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtlongitud.Margin = new System.Windows.Forms.Padding(4);
             this.txtlongitud.Name = "txtlongitud";
             this.txtlongitud.Size = new System.Drawing.Size(280, 22);
             this.txtlongitud.TabIndex = 5;
+            this.txtlongitud.TextChanged += new System.EventHandler(this.txtlongitud_TextChanged);
             // 
             // label1
             // 
@@ -138,7 +143,7 @@
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(771, 267);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(424, 261);
@@ -146,13 +151,13 @@
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.SelecionarRegistro);
             // 
-            // btnitin
+            // btnRuta
             // 
             this.btnRuta.BackColor = System.Drawing.SystemColors.ControlDark;
             this.btnRuta.ForeColor = System.Drawing.Color.White;
-            this.btnRuta.Image = global::MapasGoogle.Properties.Resources._1477040969_rout;
+            this.btnRuta.Image = ((System.Drawing.Image)(resources.GetObject("btnRuta.Image")));
             this.btnRuta.Location = new System.Drawing.Point(1081, 55);
-            this.btnRuta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRuta.Margin = new System.Windows.Forms.Padding(4);
             this.btnRuta.Name = "btnRuta";
             this.btnRuta.Size = new System.Drawing.Size(127, 58);
             this.btnRuta.TabIndex = 11;
@@ -165,9 +170,9 @@
             // 
             this.btnPolygon.BackColor = System.Drawing.SystemColors.ControlDark;
             this.btnPolygon.ForeColor = System.Drawing.Color.White;
-            this.btnPolygon.Image = global::MapasGoogle.Properties.Resources._1477040925_polygom;
+            this.btnPolygon.Image = ((System.Drawing.Image)(resources.GetObject("btnPolygon.Image")));
             this.btnPolygon.Location = new System.Drawing.Point(1081, 133);
-            this.btnPolygon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPolygon.Margin = new System.Windows.Forms.Padding(4);
             this.btnPolygon.Name = "btnPolygon";
             this.btnPolygon.Size = new System.Drawing.Size(127, 58);
             this.btnPolygon.TabIndex = 10;
@@ -176,13 +181,13 @@
             this.btnPolygon.UseVisualStyleBackColor = false;
             this.btnPolygon.Click += new System.EventHandler(this.btnPolygon_Click);
             // 
-            // btnElimi
+            // btnEliminar
             // 
             this.btnEliminar.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Image = global::MapasGoogle.Properties.Resources._1475456409_map_delete;
+            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
             this.btnEliminar.Location = new System.Drawing.Point(923, 197);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(129, 58);
             this.btnEliminar.TabIndex = 2;
@@ -191,13 +196,13 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnAjou
+            // btnAgregar
             // 
             this.btnAgregar.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnAgregar.ForeColor = System.Drawing.Color.White;
-            this.btnAgregar.Image = global::MapasGoogle.Properties.Resources._1475456163_map_add;
+            this.btnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("btnAgregar.Image")));
             this.btnAgregar.Location = new System.Drawing.Point(771, 197);
-            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(144, 58);
             this.btnAgregar.TabIndex = 1;
@@ -211,7 +216,7 @@
             this.btnSat.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnSat.ForeColor = System.Drawing.Color.White;
             this.btnSat.Location = new System.Drawing.Point(17, 554);
-            this.btnSat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSat.Margin = new System.Windows.Forms.Padding(4);
             this.btnSat.Name = "btnSat";
             this.btnSat.Size = new System.Drawing.Size(100, 28);
             this.btnSat.TabIndex = 13;
@@ -224,7 +229,7 @@
             this.btnOriginal.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnOriginal.ForeColor = System.Drawing.Color.White;
             this.btnOriginal.Location = new System.Drawing.Point(139, 554);
-            this.btnOriginal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnOriginal.Margin = new System.Windows.Forms.Padding(4);
             this.btnOriginal.Name = "btnOriginal";
             this.btnOriginal.Size = new System.Drawing.Size(100, 28);
             this.btnOriginal.TabIndex = 14;
@@ -232,12 +237,12 @@
             this.btnOriginal.UseVisualStyleBackColor = false;
             this.btnOriginal.Click += new System.EventHandler(this.btnOriginal_Click);
             // 
-            // btnRelief
+            // btnRelieve
             // 
             this.btnRelieve.BackColor = System.Drawing.SystemColors.HotTrack;
             this.btnRelieve.ForeColor = System.Drawing.Color.White;
             this.btnRelieve.Location = new System.Drawing.Point(268, 554);
-            this.btnRelieve.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRelieve.Margin = new System.Windows.Forms.Padding(4);
             this.btnRelieve.Name = "btnRelieve";
             this.btnRelieve.Size = new System.Drawing.Size(100, 28);
             this.btnRelieve.TabIndex = 15;
@@ -248,7 +253,7 @@
             // trackZoom
             // 
             this.trackZoom.Location = new System.Drawing.Point(509, 535);
-            this.trackZoom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.trackZoom.Margin = new System.Windows.Forms.Padding(4);
             this.trackZoom.Maximum = 25;
             this.trackZoom.Name = "trackZoom";
             this.trackZoom.Size = new System.Drawing.Size(313, 56);
@@ -271,12 +276,25 @@
             this.timer1.Interval = 10;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(956, 540);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(186, 42);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "conncetDB";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1224, 601);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.trackZoom);
             this.Controls.Add(this.btnRelieve);
@@ -295,7 +313,7 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.gMapControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "GoogleMapa";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -326,6 +344,7 @@
         private System.Windows.Forms.TrackBar trackZoom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -37,3 +37,4 @@ C:\Users\ACER EXTENSA 15\Downloads\MapasGoogle\MapasGoogle\MapasGoogle\obj\Debug
 C:\Users\ACER EXTENSA 15\Downloads\MapasGoogle\MapasGoogle\MapasGoogle\obj\Debug\MapasGoogle.Form1.resources
 C:\Users\ACER EXTENSA 15\Downloads\MapasGoogle\MapasGoogle\MapasGoogle\obj\Debug\MapasGoogle.Properties.Resources.resources
 C:\Users\ACER EXTENSA 15\Downloads\MapasGoogle\MapasGoogle\MapasGoogle\obj\Debug\MapasGoogle.csproj.GenerateResource.Cache
+C:\Users\ACER EXTENSA 15\Downloads\MapasGoogle\MapasGoogle\MapasGoogle\bin\Debug\MySql.Fabric.Plugin.dll
